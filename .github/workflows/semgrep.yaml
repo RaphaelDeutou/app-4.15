@@ -11,19 +11,19 @@ jobs:
       contents: read
     container:
       image: returntocorp/semgrep:1.74.0
-    if: (github.actor != 'dependabot[bot]')
     steps:
       - name: "checkout source"
         uses: actions/checkout@v4
 
-      - name: upload sarif file
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: result.sarif
-          category: analysis-tool
-        
-
       - name: "Execute semgrep"
-        run: semgrep ci
+        run: semgrep ci --sarif --output=semgrep.sarif
         env:
           SEMGREP_RULES: p/default
+
+
+      - name: upload sarif file
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+         
