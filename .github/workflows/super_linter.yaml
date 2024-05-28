@@ -13,7 +13,7 @@ jobs:
       statuses: write
     steps:
     - name: checkout_code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: 'Lint code base'
       uses: github/super-linter/slim@v4
