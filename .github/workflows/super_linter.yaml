@@ -24,7 +24,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ SUPER.TOKEN }}
 
-    - uses: actions/labeler@v2
+    - uses: actions/labeler@v5
       with:
         repo-token: ${{ secrets.SUPER_TOKEN }}
 
