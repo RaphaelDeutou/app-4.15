@@ -2,11 +2,17 @@ name: super_linter
 on:
   pull_request:
     branches: [main]
+permissions: {}
 
 jobs:
   lint:
     name: Lint code base
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
     steps:
     - name: checkout_code
       uses: actions/checkout@v3
@@ -14,5 +20,5 @@ jobs:
     - name: 'Lint code base'
       uses: github/super-linter/slim@v4
       env:
-        VALIDATE8ALL8CODEBASE: true
+        VALIDATE_ALL_CODEBASE: true
         GITHUB_TOKEN: ${{secret.GITHUB_TOKEN}}
