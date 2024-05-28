@@ -18,12 +18,18 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: 'Lint code base'
-      uses: super-linter/super-linter/slim@v4
+    - name: Create a Release
+      id: create_release
+      uses: actions/create-release@v1
       env:
-        VALIDATE_ALL_CODEBASE: true
-        GITHUB_TOKEN: ${{ secrets.SUPER_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
 
     - uses: actions/labeler@v2
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 'Lint code base'
+      uses: super-linter/super-linter/slim@v4
+      env:
+        VALIDATE_ALL_CODEBASE: true
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
