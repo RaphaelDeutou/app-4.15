@@ -1,14 +1,21 @@
-semgrep:
-  name: semgrep
-  runs-on:
-  container:
-    image: returntocorp/semgrep:latest
-  if: (github.actor != 'dependabot[bot]')
-  steps:
-    - name: "checkout source"
-      uses: actions/checkout@v4
+name: semgrep
+on:
+  push:
+    
 
-    - name: "Execute semgrep"
-      run: semgrep ci
-      env:
-        SEMGREP_RULES: p/default
+jobs: 
+  semgrep:
+    name: semgrep
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep:latest
+    if: (github.actor != 'dependabot[bot]')
+    steps:
+      - name: "checkout source"
+        uses: actions/checkout@v4
+        
+
+      - name: "Execute semgrep"
+        run: semgrep ci
+        env:
+          SEMGREP_RULES: p/default
