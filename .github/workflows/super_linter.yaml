@@ -8,9 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
-      packages: read
-      statuses: write
+      contents: write
+      pull-requests: write 
+      issues: read
+      packages: none
     steps:
     - name: checkout_code
       uses: actions/checkout@v4
@@ -22,3 +23,7 @@ jobs:
       env:
         VALIDATE_ALL_CODEBASE: true
         GITHUB_TOKEN: ${{ secrets.SUPER_TOKEN }}
+
+    - uses: actions/labeler@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
