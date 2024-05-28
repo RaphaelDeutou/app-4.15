@@ -22,14 +22,14 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ SUPER.TOKEN }}
 
     - uses: actions/labeler@v2
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.SUPER_TOKEN }}
 
     - name: 'Lint code base'
       uses: super-linter/super-linter/slim@v4
       env:
         VALIDATE_ALL_CODEBASE: true
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.SUPER_TOKEN }}
