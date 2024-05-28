@@ -29,7 +29,7 @@ jobs:
         repo-token: ${{ secrets.SUPER_TOKEN }}
 
     - name: 'Lint code base'
-      uses: super-linter/super-linter/slim@v4
+      uses: super-linter/super-linter/slim@v6
       env:
         VALIDATE_ALL_CODEBASE: true
         GITHUB_TOKEN: ${{ secrets.SUPER_TOKEN }}
