@@ -15,3 +15,8 @@ venv/
 .coverage
 htmlcov
 adhoc
+
+# Private keys/certs for local dev -- never commit these
+local_data/*.key
+local_data/*.pem
+local_data/private-pgp.asc
